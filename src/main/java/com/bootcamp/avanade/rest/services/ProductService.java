@@ -6,6 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.bootcamp.avanade.rest.exceptions.product.ProductNullException;
+import com.bootcamp.avanade.rest.exceptions.product.ProductPriceException;
 import com.bootcamp.avanade.rest.models.ProductEntity;
 import com.bootcamp.avanade.rest.repositories.ProductRepository;
 
@@ -14,7 +16,13 @@ public class ProductService {
     @Autowired
     private ProductRepository repository;
 
-    public ProductEntity createProduct(ProductEntity product){
+    public ProductEntity createProduct(ProductEntity product) throws Exception{
+        if(product.getName() == null || product.getPrice() == null) {
+            throw new ProductNullException();
+        }
+        if(product.getPrice() <= 0) {
+            throw new ProductPriceException();
+        }
         return repository.save(product);
     }
 

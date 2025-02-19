@@ -1,4 +1,4 @@
-package com.bootcamp.avanade.rest.controllers;
+package com.bootcamp.avanade.rest.controllers.product;
 
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,7 +24,7 @@ public class ProductController {
     private ProductService service;
 
     @PostMapping("add")
-    public ResponseEntity<ProductEntity> createProduct(@RequestBody ProductEntity product) {
+    public ResponseEntity<ProductEntity> createProduct(@RequestBody ProductEntity product) throws Exception{
         return ResponseEntity.ok().body(service.createProduct(product));
     }
 
