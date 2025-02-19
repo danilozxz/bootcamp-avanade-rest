@@ -28,12 +28,12 @@ public class ProductController {
         return ResponseEntity.ok().body(service.createProduct(product));
     }
 
-    @GetMapping("list/{id}")
+    @GetMapping("{id}")
     public Optional<ProductEntity> getById(@PathVariable Long id) {
         return service.findById(id);
     }
 
-    @GetMapping("list-all")
+    @GetMapping("list")
     public List<ProductEntity> getAll() {
         return service.findAll();
     }
